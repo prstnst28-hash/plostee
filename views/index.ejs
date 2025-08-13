@@ -1,73 +1,225 @@
-<!-- HERO -->
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-b from-brand-700/20 via-zinc-900 to-zinc-950 pointer-events-none"></div>
-  <div class="max-w-6xl mx-auto px-4 pt-12 pb-16 relative">
-    <div class="max-w-3xl">
-      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-        Share your <span class="text-brand-500">Minecraft plugins</span> with the world.
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content fade-in-up">
+      <h1 class="hero-title">
+        Share your <span style="color: var(--primary);">Minecraft plugins</span> with the world
       </h1>
-      <p class="mt-4 text-zinc-300 text-lg">
-        Simple publishing. External downloads. Community-driven.
+      <p class="hero-subtitle">
+        The modern platform for Minecraft plugin developers. Publish, discover, and share plugins with a thriving community of server owners and developers.
       </p>
-      <div class="mt-6 flex gap-3">
+      <div class="flex gap-md justify-center" style="margin-bottom: var(--spacing-xl);">
         <% if (!user) { %>
-          <a href="/register" class="px-5 py-2.5 rounded-md bg-brand-600 hover:bg-brand-700 transition font-semibold">Get Started</a>
-          <a href="/login" class="px-5 py-2.5 rounded-md bg-zinc-800 hover:bg-zinc-700 transition">Login</a>
+          <a href="/register" class="btn btn-primary btn-lg">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Get Started
+          </a>
+          <a href="/login" class="btn btn-outline btn-lg">Browse Plugins</a>
         <% } else { %>
-          <a href="/publish" class="px-5 py-2.5 rounded-md bg-brand-600 hover:bg-brand-700 transition font-semibold">Publish a Plugin</a>
-          <a href="/my" class="px-5 py-2.5 rounded-md bg-zinc-800 hover:bg-zinc-700 transition">My Plugins</a>
+          <a href="/publish" class="btn btn-primary btn-lg">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Publish Plugin
+          </a>
+          <a href="/my" class="btn btn-outline btn-lg">My Dashboard</a>
         <% } %>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-number">1,247</span>
+          <span class="hero-stat-label">Plugins</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">2.1M</span>
+          <span class="hero-stat-label">Downloads</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">15.3K</span>
+          <span class="hero-stat-label">Developers</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">98.7%</span>
+          <span class="hero-stat-label">Uptime</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="max-w-6xl mx-auto px-4 py-10">
-  <div class="grid sm:grid-cols-3 gap-6">
-    <div class="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-      <h3 class="font-bold text-white">🚀 Fast Publishing</h3>
-      <p class="mt-2 text-zinc-400">Submit metadata and link to external downloads. No hosting costs.</p>
-    </div>
-    <div class="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-      <h3 class="font-bold text-white">🛡️ Safe by design</h3>
-      <p class="mt-2 text-zinc-400">No .jar hosting. Keep your revenue on Modrinth/Spigot/GitHub.</p>
-    </div>
-    <div class="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-      <h3 class="font-bold text-white">🤝 Community</h3>
-      <p class="mt-2 text-zinc-400">Discover, share, and grow together.</p>
+<!-- Search Section -->
+<section class="search-section">
+  <div class="container">
+    <div class="search-container">
+      <div class="search-box">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" class="search-input" placeholder="Search plugins, authors, or categories..." />
+      </div>
+      
+      <div class="search-filters">
+        <a href="#" class="filter-tag active">All</a>
+        <a href="#" class="filter-tag">Utility</a>
+        <a href="#" class="filter-tag">Economy</a>
+        <a href="#" class="filter-tag">PvP</a>
+        <a href="#" class="filter-tag">Admin Tools</a>
+        <a href="#" class="filter-tag">Fun</a>
+        <a href="#" class="filter-tag">World Management</a>
+        <a href="#" class="filter-tag">API</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PLUGIN GRID -->
-<section class="max-w-6xl mx-auto px-4 pb-14">
-  <div class="flex items-center justify-between">
-    <h2 class="text-xl font-bold text-white">Newest Plugins</h2>
-  </div>
-
-  <% if (!plugins || plugins.length === 0) { %>
-    <div class="mt-4 text-zinc-400">Nothing here yet. Publish your first plugin!</div>
-  <% } else { %>
-    <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <% plugins.forEach(p => { %>
-        <div class="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5 hover:border-zinc-700 transition">
-          <h3 class="font-semibold text-white"><%= p.name %></h3>
-          <p class="text-zinc-400 text-sm mt-1 line-clamp-3"><%= p.description %></p>
-          <div class="mt-3 text-xs text-zinc-500">by <%= p.username || 'unknown' %></div>
-          <div class="mt-4">
-            <% if (p.link) { %>
-              <a href="<%= p.link %>" target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-brand-600 hover:bg-brand-700 text-sm">
-                Download
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10"/></svg>
-              </a>
-            <% } else { %>
-              <span class="text-zinc-500 text-sm">No link provided</span>
-            <% } %>
+<!-- Featured Plugins Section -->
+<section class="plugins-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">🔥 Trending This Week</h2>
+      <a href="/plugins?sort=trending" class="view-all-link">
+        View All
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+    
+    <div class="plugins-grid">
+      <!-- Featured plugin cards will be generated here -->
+      <div class="plugin-card">
+        <div class="plugin-version">v2.1.0</div>
+        <div class="plugin-header">
+          <img src="/placeholder.svg" alt="EssentialsX" class="plugin-icon" />
+          <div class="plugin-info">
+            <a href="#" class="plugin-title">EssentialsX</a>
+            <div class="plugin-author">by EssentialsX Team</div>
           </div>
         </div>
-      <% }) %>
+        <p class="plugin-description">
+          The essential plugin suite for Minecraft servers. Provides core functionality including teleportation, economy, chat formatting, and much more.
+        </p>
+        <div class="plugin-tags">
+          <span class="plugin-tag">Essential</span>
+          <span class="plugin-tag">Economy</span>
+          <span class="plugin-tag">Teleport</span>
+        </div>
+        <div class="plugin-stats">
+          <div class="plugin-stat">
+            <svg class="plugin-stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            847K downloads
+          </div>
+          <div class="plugin-stat">
+            <svg class="plugin-stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Updated 2 days ago
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add more featured plugin cards here -->
+      <div class="plugin-card">
+        <div class="plugin-version">v1.8.3</div>
+        <div class="plugin-header">
+          <img src="/placeholder.svg" alt="WorldEdit" class="plugin-icon" />
+          <div class="plugin-info">
+            <a href="#" class="plugin-title">WorldEdit</a>
+            <div class="plugin-author">by sk89q</div>
+          </div>
+        </div>
+        <p class="plugin-description">
+          Fast world editing for builders, large scale terrain modification, and creative building tools for Minecraft.
+        </p>
+        <div class="plugin-tags">
+          <span class="plugin-tag">Building</span>
+          <span class="plugin-tag">World</span>
+          <span class="plugin-tag">Creative</span>
+        </div>
+        <div class="plugin-stats">
+          <div class="plugin-stat">
+            <svg class="plugin-stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            1.2M downloads
+          </div>
+          <div class="plugin-stat">
+            <svg class="plugin-stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Updated 1 week ago
+          </div>
+        </div>
+      </div>
     </div>
-  <% } %>
+  </div>
+</section>
+
+<!-- Recent Plugins Section -->
+<section class="plugins-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">🆕 Recently Added</h2>
+      <a href="/plugins?sort=newest" class="view-all-link">
+        View All
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <% if (!plugins || plugins.length === 0) { %>
+      <div class="text-center" style="padding: var(--spacing-2xl); color: var(--text-muted);">
+        <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin: 0 auto var(--spacing-md);">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+        </svg>
+        <h3 class="h3">No plugins yet</h3>
+        <p>Be the first to share your amazing Minecraft plugin with the community!</p>
+        <a href="/publish" class="btn btn-primary" style="margin-top: var(--spacing-md);">Publish First Plugin</a>
+      </div>
+    <% } else { %>
+      <div class="plugins-grid">
+        <% plugins.forEach(p => { %>
+          <div class="plugin-card">
+            <div class="plugin-version">v1.0.0</div>
+            <div class="plugin-header">
+              <img src="/placeholder.svg" alt="<%= p.name %>" class="plugin-icon" />
+              <div class="plugin-info">
+                <a href="/plugins/<%= p.id || '#' %>" class="plugin-title"><%= p.name %></a>
+                <div class="plugin-author">by <%= p.username || 'Unknown' %></div>
+              </div>
+            </div>
+            <p class="plugin-description"><%= p.description %></p>
+            <div class="plugin-tags">
+              <span class="plugin-tag">New</span>
+              <span class="plugin-tag">Utility</span>
+            </div>
+            <div class="plugin-stats">
+              <div class="plugin-stat">
+                <svg class="plugin-stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <% if (p.link) { %>
+                  <a href="<%= p.link %>" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">Download</a>
+                <% } else { %>
+                  No download
+                <% } %>
+              </div>
+              <div class="plugin-stat">
+                <svg class="plugin-stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <%= new Date(p.created_at).toLocaleDateString() %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
 </section>
