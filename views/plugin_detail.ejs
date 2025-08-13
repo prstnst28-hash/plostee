@@ -1,0 +1,21 @@
+<% layout('layout', { title: plugin.title }) %>
+<div class="card">
+  <img class="icon lg" src="<%= plugin.icon || '/placeholder.svg' %>" />
+  <div class="grow">
+    <h1 class="h1"><%= plugin.title %></h1>
+    <div class="muted"><%= plugin.shortdesc %></div>
+    <div style="margin-top:8px;">
+      <a class="btn primary" href="<%= plugin.link %>" target="_blank" rel="noreferrer">Download</a>
+    </div>
+  </div>
+</div>
+
+<h2 class="h2">Description</h2>
+<div class="prose"><%- htmlDesc %></div>
+
+<h3 class="h3">Changelog</h3>
+<div class="prose"><%- htmlChangelog %></div>
+
+<div class="tiny muted" style="margin-top:16px;">
+  Status: <%= plugin.status %><% if (plugin.reject_reason) { %>, reason: <%= plugin.reject_reason %><% } %>
+</div>

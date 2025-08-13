@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= typeof title !== 'undefined' ? title : 'Plost' %></title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#7c3aed',
+              600: '#6d28d9',
+              700: '#5b21b6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="h-full bg-zinc-950 text-zinc-100">
+  <!-- NAV -->
+  <nav class="border-b border-zinc-800 bg-zinc-950/70 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4">
+      <a href="/" class="font-extrabold text-xl tracking-tight text-white">Plost</a>
+
+      <a href="/" class="text-zinc-300 hover:text-white transition">Home</a>
+      <a href="/publish" class="text-zinc-300 hover:text-white transition">Publish</a>
+      <% if (user) { %>
+        <a href="/my" class="text-zinc-300 hover:text-white transition">My Plugins</a>
+      <% } %>
+
+      <div class="ml-auto flex items-center gap-3">
+        <% if (!user) { %>
+          <a href="/login" class="px-3 py-1.5 rounded-md bg-zinc-800 text-zinc-200 hover:bg-zinc-700 transition">Login</a>
+          <a href="/register" class="px-3 py-1.5 rounded-md bg-brand-600 hover:bg-brand-700 transition">Sign Up</a>
+        <% } else { %>
+          <span class="hidden sm:inline text-zinc-400">Hi, <%= user.username || user.email %></span>
+          <a href="/logout" class="px-3 py-1.5 rounded-md bg-zinc-800 text-zinc-200 hover:bg-zinc-700 transition">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="min-h-[calc(100vh-120px)]">
+    <%- body %>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-zinc-800 mt-12">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-zinc-400">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <p>© <%= new Date().getFullYear() %> Plost — Minecraft Plugin Sharing</p>
+        <p class="text-zinc-500">Alpha build. Dark mode only. ✨</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

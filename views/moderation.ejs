@@ -1,0 +1,28 @@
+<% layout('layout', { title: 'Moderation' }) %>
+<h1 class="h1">Moderation queue</h1>
+
+<% if (!pending || pending.length === 0) { %>
+  <div class="muted">Nothing pending. 🎉</div>
+<% } %>
+
+<div class="list">
+  <% (pending || []).forEach(p => { %>
+    <div class="card">
+      <img class="icon" src="<%= p.icon || '/placeholder.svg' %>" />
+      <div class="grow">
+        <div class="title"><%= p.title %></div>
+        <div class="desc"><%= p.shortdesc %></div>
+        <div class="tiny muted"><%= p.link %></div>
+      </div>
+      <div class="actions column">
+        <form method="post" action="/moderation/<%= p.id %>/approve">
+          <button class="btn success">Approve</button>
+        </form>
+        <form method="post" action="/moderation/<%= p.id %>/reject" class="stack">
+          <input class="input" name="reason" placeholder="Reason (optional)"/>
+          <button class="btn danger">Reject</button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+</div>

@@ -1,0 +1,73 @@
+<!-- HERO -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-700/20 via-zinc-900 to-zinc-950 pointer-events-none"></div>
+  <div class="max-w-6xl mx-auto px-4 pt-12 pb-16 relative">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+        Share your <span class="text-brand-500">Minecraft plugins</span> with the world.
+      </h1>
+      <p class="mt-4 text-zinc-300 text-lg">
+        Simple publishing. External downloads. Community-driven.
+      </p>
+      <div class="mt-6 flex gap-3">
+        <% if (!user) { %>
+          <a href="/register" class="px-5 py-2.5 rounded-md bg-brand-600 hover:bg-brand-700 transition font-semibold">Get Started</a>
+          <a href="/login" class="px-5 py-2.5 rounded-md bg-zinc-800 hover:bg-zinc-700 transition">Login</a>
+        <% } else { %>
+          <a href="/publish" class="px-5 py-2.5 rounded-md bg-brand-600 hover:bg-brand-700 transition font-semibold">Publish a Plugin</a>
+          <a href="/my" class="px-5 py-2.5 rounded-md bg-zinc-800 hover:bg-zinc-700 transition">My Plugins</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="max-w-6xl mx-auto px-4 py-10">
+  <div class="grid sm:grid-cols-3 gap-6">
+    <div class="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <h3 class="font-bold text-white">🚀 Fast Publishing</h3>
+      <p class="mt-2 text-zinc-400">Submit metadata and link to external downloads. No hosting costs.</p>
+    </div>
+    <div class="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <h3 class="font-bold text-white">🛡️ Safe by design</h3>
+      <p class="mt-2 text-zinc-400">No .jar hosting. Keep your revenue on Modrinth/Spigot/GitHub.</p>
+    </div>
+    <div class="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <h3 class="font-bold text-white">🤝 Community</h3>
+      <p class="mt-2 text-zinc-400">Discover, share, and grow together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLUGIN GRID -->
+<section class="max-w-6xl mx-auto px-4 pb-14">
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-bold text-white">Newest Plugins</h2>
+  </div>
+
+  <% if (!plugins || plugins.length === 0) { %>
+    <div class="mt-4 text-zinc-400">Nothing here yet. Publish your first plugin!</div>
+  <% } else { %>
+    <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <% plugins.forEach(p => { %>
+        <div class="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5 hover:border-zinc-700 transition">
+          <h3 class="font-semibold text-white"><%= p.name %></h3>
+          <p class="text-zinc-400 text-sm mt-1 line-clamp-3"><%= p.description %></p>
+          <div class="mt-3 text-xs text-zinc-500">by <%= p.username || 'unknown' %></div>
+          <div class="mt-4">
+            <% if (p.link) { %>
+              <a href="<%= p.link %>" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-brand-600 hover:bg-brand-700 text-sm">
+                Download
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            <% } else { %>
+              <span class="text-zinc-500 text-sm">No link provided</span>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
